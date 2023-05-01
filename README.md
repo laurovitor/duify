@@ -15,4 +15,4 @@ DUify
 
 ## Logo
 
-[Logo by looka] (https://looka.com/s/123838512) cor principal rgb(190, 49, 68).
+[Logo by looka](https://looka.com/s/123838512) cor principal rgb(190, 49, 68).

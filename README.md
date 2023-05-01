@@ -5,7 +5,7 @@ DUify
 
 ## Dependency
 
-[jQuery](https://github.com/jquery/jquery) is required to do the magic.
+[jQuery](https://github.com/jquery/jquery) é necessário para fazer a mágica.
 
 ## Usage
 

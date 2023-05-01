@@ -1,11 +1,7 @@
 ![DUify](src/images/logo.png)
+
 DUify
 =====
-
-Override your input files with style.
-
-Demo here : [http://laurovitor.github.io/duify](http://laurovitor.github.io/duify/)
-
 
 ## Dependency
 
@@ -17,9 +13,6 @@ Demo here : [http://laurovitor.github.io/duify](http://laurovitor.github.io/duif
 
 ## Events
 
-
 ## Logo
 
-[https://looka.com/s/123838512] (Logo by looka)
-
-Color: rgb(190, 49, 68)
+[Logo by looka] (https://looka.com/s/123838512) cor principal rgb(190, 49, 68).

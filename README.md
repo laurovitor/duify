@@ -4,7 +4,7 @@
 </p>
 
 
-![DUify](src/images/cover.jpg)
+![DUify](src/images/logo.svg)
 
 DUify
 =====

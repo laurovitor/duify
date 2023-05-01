@@ -1,0 +1,28 @@
+{
+    "name": "duify",
+    "title": "DUify",
+    "description": "Override your input files with style",
+    "keywords": [
+      "upload",
+      "preview",
+      "file",
+      "drag",
+      "drop",
+      "jquery"
+    ],
+    "author": {
+      "name": "Lauro Vitor"
+    },
+    "repository": {
+      "type": "git",
+      "url": "git://github.com/laurovitor/duify.git"
+    },
+    "bugs": "https://github.com/laurovitor/duify/issues",
+    "dependencies": {
+      "jquery": ">=1.8"
+    },
+    "main": [
+      "dist/js/duify.js",
+      "dist/css/duify.css"
+    ]
+  }

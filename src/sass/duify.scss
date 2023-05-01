@@ -1,0 +1,474 @@
+$duify-width:            100% !default;
+$duify-height:           200px !default;
+$duify-font-family:      "Roboto", "Helvetica Neue", "Helvetica", "Arial" !default;
+$duify-font-size:        14px !default;
+$duify-line-height:      22px !default;
+$duify-text-color:       #777 !default;
+$duify-icon-color:       #CCC !default;
+$duify-background:       #FFF !default;
+$duify-border-size:      2px !default;
+$duify-border-color:     #E5E5E5 !default;
+$duify-infos-background: transparentize(#000, 0.3) !default;
+$duify-infos-color:      #FFF !default;
+$duify-clear-color:      #FFF !default;
+$duify-error-color:      #F34141 !default;
+$duify-stripes:          #F6F6F6 !default;
+$duify-loader-size:      20px !default;
+$duify-loader-border:    1px !default;
+$duify-loader-fill:      #CCC !default;
+$duify-loader-trace:     #777 !default;
+$duify-font-path:        "../fonts" !default;
+
+@import "duify-font";
+
+.duify-wrapper {
+    display: block;
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;
+    width: $duify-width;
+    max-width: 100%;
+    height: $duify-height;
+    padding: 5px 10px;
+    font-family: $duify-font-family;
+    font-size: $duify-font-size;
+    line-height: $duify-line-height;
+    color: $duify-text-color;
+    background-color: $duify-background;
+    background-image: none;
+    text-align: center;
+    border: $duify-border-size solid $duify-border-color;
+    transition: border-color 0.15s linear;
+
+    &:hover {
+        background-size: 30px 30px;
+        background-image: linear-gradient(
+            -45deg,
+            $duify-stripes 25%,
+            transparent      25%,
+            transparent      50%,
+            $duify-stripes 50%,
+            $duify-stripes 75%,
+            transparent      75%,
+            transparent
+        );
+        animation: stripes 2s linear infinite;
+    }
+
+    &.has-preview {
+        .duify-clear {
+            display: block;
+        }
+    }
+
+    &.has-error {
+        border-color: $duify-error-color;
+
+        .duify-message .duify-error,  {
+            display: block;
+        }
+
+        &:hover {
+            .duify-errors-container {
+                visibility: visible;
+                opacity: 1;
+                transition-delay: 0s;
+            }
+        }
+    }
+
+    &.disabled {
+        input {
+            cursor: not-allowed;
+        }
+
+        &:hover {
+            background-image: none;
+            animation: none;
+        }
+
+        .duify-message {
+            opacity: 0.5;
+            text-decoration: line-through;
+        }
+
+        .duify-infos-message {
+            display: none;
+        }
+    }
+
+    input {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        opacity: 0;
+        cursor: pointer;
+        z-index: 5;
+    }
+
+    .duify-message {
+        position: relative;
+        top: 50%;
+        transform: translateY(-50%);
+
+        span.file-icon {
+            @extend .duify-font;
+            @extend .duify-font-upload;
+            font-size: 50px;
+            color: $duify-icon-color;
+        }
+
+        p {
+            margin: 5px 0 0 0;
+
+            &.duify-error {
+                color: $duify-error-color;
+                font-weight: bold;
+                display: none;
+            }
+        }
+    }
+
+    .duify-clear {
+        display: none;
+        position: absolute;
+        opacity: 0;
+        z-index: 7;
+        top: 10px;
+        right: 10px;
+        background: none;
+        border: 2px solid $duify-clear-color;
+        text-transform: uppercase;
+        font-family: $duify-font-family;
+        font-size: 11px;
+        padding: 4px 8px;
+        font-weight: bold;
+        color: $duify-clear-color;
+        transition: all 0.15s linear;
+
+        &:hover {
+            background: transparentize($duify-clear-color, 0.8);
+        }
+    }
+
+    .duify-preview {
+        display: none;
+        position: absolute;
+        z-index: 1;
+        background-color: $duify-background;
+        padding: 5px;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        overflow: hidden;
+        text-align: center;
+
+
+        .duify-render {
+            img {
+                top: 50%;
+                transform: translate(0, -50%);
+                position: relative;
+                max-width: 100%;
+                max-height: 100%;
+                background-color: $duify-background;
+                transition: border-color 0.15s linear;
+            }
+
+            i {
+                font-size: 70px;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                position: absolute;
+                color: #777;
+            }
+
+            .duify-extension {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                margin-top: 10px;
+                text-transform: uppercase;
+                font-weight: 900;
+                letter-spacing: -0.03em;
+                font-size: 13px;
+                width: 42px;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+        }
+
+        .duify-infos {
+            position: absolute;
+            left: 0;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 3;
+            background: $duify-infos-background;
+            opacity: 0;
+            transition: opacity 0.15s linear;
+
+            .duify-infos-inner {
+                position: absolute;
+                top: 50%;
+                transform: translate(0, -40%);
+                backface-visibility: hidden;
+                width: 100%;
+                padding: 0 20px;
+                transition: all 0.2s ease;
+
+                p {
+                    padding: 0;
+                    margin: 0;
+                    position: relative;
+                    width: 100%;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    color: $duify-infos-color;
+                    text-align: center;
+                    line-height: 25px;
+                    font-weight: bold;
+
+                    &.duify-infos-message {
+                        margin-top: 15px;
+                        padding-top: 15px;
+                        font-size: 12px;
+                        position: relative;
+                        opacity: 0.5;
+
+                        &::before {
+                            content: '';
+                            position: absolute;
+                            top: 0;
+                            left: 50%;
+                            transform: translate(-50%, 0);
+                            background: $duify-infos-color;
+                            width: 30px;
+                            height: 2px;
+                        }
+                    }
+                }
+            }
+
+        }
+    }
+
+    &:hover {
+        .duify-clear {
+            opacity: 1;
+        }
+
+        .duify-preview {
+            .duify-infos {
+                opacity: 1;
+
+                .duify-infos-inner {
+                    margin-top: -5px;
+                }
+            }
+        }
+    }
+
+    &.touch-fallback {
+        height: auto !important;
+
+        &:hover {
+            background-image: none;
+            animation: none;
+        }
+
+        .duify-preview {
+            position: relative;
+            padding: 0;
+
+             .duify-render {
+                display: block;
+                position: relative;
+
+                .duify-font-file {
+                    position: relative;
+                    transform: translate(0, 0);
+                    top: 0;
+                    left: 0;
+
+                    &::before {
+                        margin-top: 30px;
+                        margin-bottom: 30px;
+                    }
+                }
+
+                img {
+                    position: relative;
+                    transform: translate(0, 0);
+                }
+            }
+
+            .duify-infos {
+                position: relative;
+                opacity: 1;
+                background: transparent;
+
+                .duify-infos-inner {
+                    position: relative;
+                    top: 0;
+                    transform: translate(0, 0);
+                    padding: 5px 90px 5px 0;
+
+                    p {
+                        padding: 0;
+                        margin: 0;
+                        position: relative;
+                        width: 100%;
+                        white-space: nowrap;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        color: $duify-text-color;
+                        text-align: left;
+                        line-height: 25px;
+
+                        &.duify-filename {
+                            font-weight: bold;
+                        }
+
+                        &.duify-infos-message {
+                            margin-top: 0;
+                            padding-top: 0;
+                            font-size: 11px;
+                            position: relative;
+                            opacity: 1;
+
+                            &::before {
+                                display: none;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        .duify-message {
+            transform: translate(0, 0);
+            padding: 40px 0;
+        }
+
+        .duify-clear {
+            top: auto;
+            bottom: 23px;
+            opacity: 1;
+            border-color: transparentize($duify-text-color, 0.3);
+            color: $duify-text-color;
+        }
+
+        &.has-preview {
+            .duify-message {
+                display: none;
+            }
+        }
+
+        &:hover {
+            .duify-preview {
+                .duify-infos {
+                    .duify-infos-inner {
+                        margin-top: 0;
+                    }
+                }
+            }
+        }
+    }
+
+    .duify-loader {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        display: none;
+        z-index: 9;
+
+        &::after {
+            display: block;
+            position: relative;
+            width: $duify-loader-size;
+            height: $duify-loader-size;
+            animation: rotate 0.6s linear infinite;
+            border-radius: 100%;
+            border-top: $duify-loader-border solid $duify-loader-fill;
+            border-bottom: $duify-loader-border solid $duify-loader-trace;
+            border-left: $duify-loader-border solid $duify-loader-fill;
+            border-right: $duify-loader-border solid $duify-loader-trace;
+            content: '';
+        }
+    }
+
+    .duify-errors-container {
+        position: absolute;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 3;
+        background: transparentize($duify-error-color, 0.2);
+        text-align: left;
+        visibility: hidden;
+        opacity: 0;
+        transition: visibility 0s linear 0.15s,opacity 0.15s linear;
+
+        ul {
+            padding: 10px 20px;
+            margin: 0;
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+
+            li {
+                margin-left: 20px;
+                color: #FFF;
+                font-weight: bold;
+            }
+        }
+
+        &.visible {
+            visibility: visible;
+            opacity: 1;
+            transition-delay: 0s;
+        }
+    }
+
+    & ~ .duify-errors-container {
+        ul {
+            padding: 0;
+            margin: 15px 0;
+
+            li {
+                margin-left: 20px;
+                color: $duify-error-color;
+                font-weight: bold;
+            }
+        }
+    }
+}
+
+@keyframes stripes {
+  from { background-position: 0 0; }
+  to   { background-position: 60px 30px; }
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotateZ(-360deg);
+  }
+  100% {
+    transform: rotateZ(0deg);
+  }
+}

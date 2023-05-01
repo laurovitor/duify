@@ -1,4 +1,7 @@
 # DUify
+<p align="center">
+  <img width="290" height="107" src="./src/imagens/logo.svg" alt="Logo">
+</p>
 
 
 ![DUify](src/images/cover.jpg)
@@ -20,3 +23,10 @@ Demo here : [http://laurovitor.github.io/duify](http://laurovitor.github.io/duif
 ## Options
 
 ## Events
+
+
+## Logo
+
+[https://looka.com/s/123838512] (Logo by looka)
+
+Color: rgb(190, 49, 68)

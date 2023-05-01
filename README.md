@@ -1,10 +1,5 @@
 # DUify
-<p align="center">
-  <img width="290" height="107" src="./src/imagens/logo.svg" alt="Logo">
-</p>
-
-
-![DUify](src/images/cover.jpg)
+![DUify](src/images/logo.png)
 
 DUify
 =====

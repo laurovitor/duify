@@ -1310,7 +1310,7 @@ p.help {
   color: #999;
 }
 
-#toggleDUify {
+#toggleDuify {
   font-size: 12px;
   text-transform: uppercase;
   background: #DDD;
@@ -1322,7 +1322,7 @@ p.help {
   margin-left: 10px;
   transition: background 0.1s linear;
 }
-#toggleDUify:hover {
+#toggleDuify:hover {
   background: #EEE;
 }
 

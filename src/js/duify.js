@@ -1,12 +1,12 @@
 var pluginName = "duify";
 
 /**
- * DUify plugin
+ * Duify plugin
  *
  * @param {Object} element
  * @param {Array} options
  */
-function DUify(element, options) {
+function Duify(element, options) {
     if (!(window.File && window.FileReader && window.FileList && window.Blob)) {
         return;
     }
@@ -96,7 +96,7 @@ function DUify(element, options) {
 /**
  * On change event
  */
-DUify.prototype.onChange = function()
+Duify.prototype.onChange = function()
 {
     this.resetPreview();
     this.readFile(this.element);
@@ -105,7 +105,7 @@ DUify.prototype.onChange = function()
 /**
  * Create dom elements
  */
-DUify.prototype.createElements = function()
+Duify.prototype.createElements = function()
 {
     this.isInit = true;
     this.input.wrap($(this.settings.tpl.wrap));
@@ -163,7 +163,7 @@ DUify.prototype.createElements = function()
  *
  * @param  {Object} input
  */
-DUify.prototype.readFile = function(input)
+Duify.prototype.readFile = function(input)
 {
     if (input.files && input.files[0]) {
         var reader         = new FileReader();
@@ -206,7 +206,7 @@ DUify.prototype.readFile = function(input)
  * @param  {Bool} previewable
  * @param  {String} src
  */
-DUify.prototype.onFileReady = function(event, previewable, src)
+Duify.prototype.onFileReady = function(event, previewable, src)
 {
     this.input.off('duify.fileReady', this.onFileReady);
 
@@ -238,7 +238,7 @@ DUify.prototype.onFileReady = function(event, previewable, src)
  *
  * @param {File} file
  */
-DUify.prototype.setFileInformations = function(file)
+Duify.prototype.setFileInformations = function(file)
 {
     this.file.object = file;
     this.file.name   = file.name;
@@ -254,7 +254,7 @@ DUify.prototype.setFileInformations = function(file)
  * @param {Int} width
  * @param {Int} height
  */
-DUify.prototype.setFileDimensions = function(width, height)
+Duify.prototype.setFileDimensions = function(width, height)
 {
     this.file.width  = width;
     this.file.height = height;
@@ -265,7 +265,7 @@ DUify.prototype.setFileDimensions = function(width, height)
  *
  * @param {String} src
  */
-DUify.prototype.setPreview = function(previewable, src)
+Duify.prototype.setPreview = function(previewable, src)
 {
     this.wrapper.removeClass('has-error').addClass('has-preview');
     this.filenameWrapper.children('.duify-filename-inner').html(this.file.name);
@@ -291,7 +291,7 @@ DUify.prototype.setPreview = function(previewable, src)
 /**
  * Reset the preview
  */
-DUify.prototype.resetPreview = function()
+Duify.prototype.resetPreview = function()
 {
     this.wrapper.removeClass('has-preview');
     var render = this.preview.children('.duify-render');
@@ -309,7 +309,7 @@ DUify.prototype.resetPreview = function()
  *
  * @return {String} filename
  */
-DUify.prototype.cleanFilename = function(src)
+Duify.prototype.cleanFilename = function(src)
 {
     var filename = src.split('\\').pop();
     if (filename == src) {
@@ -322,7 +322,7 @@ DUify.prototype.cleanFilename = function(src)
 /**
  * Clear the element, events are available
  */
-DUify.prototype.clearElement = function()
+Duify.prototype.clearElement = function()
 {
     if (this.errorsEvent.errors.length === 0) {
         var eventBefore = $.Event("duify.beforeClear");
@@ -345,7 +345,7 @@ DUify.prototype.clearElement = function()
 /**
  * Reset file informations
  */
-DUify.prototype.resetFile = function()
+Duify.prototype.resetFile = function()
 {
     this.file.object = null;
     this.file.name   = null;
@@ -358,7 +358,7 @@ DUify.prototype.resetFile = function()
 /**
  * Set the container height
  */
-DUify.prototype.setContainerSize = function()
+Duify.prototype.setContainerSize = function()
 {
     if (this.settings.height) {
         this.wrapper.height(this.settings.height);
@@ -370,7 +370,7 @@ DUify.prototype.setContainerSize = function()
  *
  * @return {Boolean}
  */
-DUify.prototype.isTouchDevice = function()
+Duify.prototype.isTouchDevice = function()
 {
     return (('ontouchstart' in window) ||
             (navigator.MaxTouchPoints > 0) ||
@@ -382,7 +382,7 @@ DUify.prototype.isTouchDevice = function()
  *
  * @return {String}
  */
-DUify.prototype.getFileType = function()
+Duify.prototype.getFileType = function()
 {
     return this.file.name.split('.').pop().toLowerCase();
 };
@@ -392,7 +392,7 @@ DUify.prototype.getFileType = function()
  *
  * @return {Boolean}
  */
-DUify.prototype.isImage = function()
+Duify.prototype.isImage = function()
 {
     if (this.settings.imgFileExtensions.indexOf(this.getFileType()) != "-1") {
         return true;
@@ -406,7 +406,7 @@ DUify.prototype.isImage = function()
 *
 * @return {Boolean}
 */
-DUify.prototype.isFileExtensionAllowed = function () {
+Duify.prototype.isFileExtensionAllowed = function () {
 
 	if (this.settings.allowedFileExtensions.indexOf('*') != "-1" || 
         this.settings.allowedFileExtensions.indexOf(this.getFileType()) != "-1") {
@@ -420,7 +420,7 @@ DUify.prototype.isFileExtensionAllowed = function () {
 /**
  * Translate messages if needed.
  */
-DUify.prototype.translateMessages = function()
+Duify.prototype.translateMessages = function()
 {
     for (var name in this.settings.tpl) {
         for (var key in this.settings.messages) {
@@ -432,7 +432,7 @@ DUify.prototype.translateMessages = function()
 /**
  * Check the limit filesize.
  */
-DUify.prototype.checkFileSize = function()
+Duify.prototype.checkFileSize = function()
 {
     if (this.sizeToByte(this.settings.maxFileSize) !== 0 && this.file.size > this.sizeToByte(this.settings.maxFileSize)) {
         this.pushError("fileSize");
@@ -444,7 +444,7 @@ DUify.prototype.checkFileSize = function()
  *
  * @return {Int} value
  */
-DUify.prototype.sizeToByte = function(size)
+Duify.prototype.sizeToByte = function(size)
 {
     var value = 0;
 
@@ -469,7 +469,7 @@ DUify.prototype.sizeToByte = function(size)
 /**
  * Validate image dimensions and format
  */
-DUify.prototype.validateImage = function()
+Duify.prototype.validateImage = function()
 {
     if (this.settings.minWidth !== 0 && this.settings.minWidth >= this.file.width) {
         this.pushError("minWidth");
@@ -497,7 +497,7 @@ DUify.prototype.validateImage = function()
  *
  * @return {String}
  */
-DUify.prototype.getImageFormat = function()
+Duify.prototype.getImageFormat = function()
 {
     if (this.file.width == this.file.height) {
         return "square";
@@ -517,7 +517,7 @@ DUify.prototype.getImageFormat = function()
 *
 * @param {String} errorKey
 */
-DUify.prototype.pushError = function(errorKey) {
+Duify.prototype.pushError = function(errorKey) {
     var e = $.Event("duify.error." + errorKey);
     this.errorsEvent.errors.push(e);
     this.input.trigger(e, [this]);
@@ -526,7 +526,7 @@ DUify.prototype.pushError = function(errorKey) {
 /**
  * Clear errors
  */
-DUify.prototype.clearErrors = function()
+Duify.prototype.clearErrors = function()
 {
     if (typeof this.errorsContainer !== "undefined") {
         this.errorsContainer.children('ul').html('');
@@ -538,7 +538,7 @@ DUify.prototype.clearErrors = function()
  *
  * @param  {String} errorKey
  */
-DUify.prototype.showError = function(errorKey)
+Duify.prototype.showError = function(errorKey)
 {
     if (typeof this.errorsContainer !== "undefined") {
         this.errorsContainer.children('ul').append('<li>' + this.getError(errorKey) + '</li>');
@@ -550,7 +550,7 @@ DUify.prototype.showError = function(errorKey)
  *
  * @return  {String} message
  */
-DUify.prototype.getError = function(errorKey)
+Duify.prototype.getError = function(errorKey)
 {
     var error = this.settings.error[errorKey],
         value = '';
@@ -581,7 +581,7 @@ DUify.prototype.getError = function(errorKey)
 /**
  * Show the loader
  */
-DUify.prototype.showLoader = function()
+Duify.prototype.showLoader = function()
 {
     if (typeof this.loader !== "undefined") {
         this.loader.show();
@@ -591,7 +591,7 @@ DUify.prototype.showLoader = function()
 /**
  * Hide the loader
  */
-DUify.prototype.hideLoader = function()
+Duify.prototype.hideLoader = function()
 {
     if (typeof this.loader !== "undefined") {
         this.loader.hide();
@@ -601,7 +601,7 @@ DUify.prototype.hideLoader = function()
 /**
  * Destroy duify
  */
-DUify.prototype.destroy = function()
+Duify.prototype.destroy = function()
 {
     this.input.siblings().remove();
     this.input.unwrap();
@@ -611,7 +611,7 @@ DUify.prototype.destroy = function()
 /**
  * Init duify
  */
-DUify.prototype.init = function()
+Duify.prototype.init = function()
 {
     this.createElements();
 };
@@ -619,7 +619,7 @@ DUify.prototype.init = function()
 /**
  * Test if element is init
  */
-DUify.prototype.isDropified = function()
+Duify.prototype.isDUified = function()
 {
     return this.isInit;
 };
@@ -627,7 +627,7 @@ DUify.prototype.isDropified = function()
 $.fn[pluginName] = function(options) {
     this.each(function() {
         if (!$.data(this, pluginName)) {
-            $.data(this, pluginName, new DUify(this, options));
+            $.data(this, pluginName, new Duify(this, options));
         }
     });
 

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>DUify — Override your input files with style.</title>
+        <title>Duify — Override your input files with style.</title>
         <meta name="description" content="">
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -16,7 +16,7 @@
             <img style="position: fixed; top: 0; right: 0; border: 0; z-index: 1000;" src="" alt="Fork me on GitHub" data-canonical-src=""></a>
         <header id="header">
             <hgroup>
-                <h1>DUify</h1>
+                <h1>Duify</h1>
                 <h2>Override your input files with style</h2>
             </hgroup>
         </header>
@@ -57,7 +57,7 @@
                     <label for="input-file-events">You can use events</label>
                     <input type="file" id="input-file-events" class="duify-event" data-default-file="src/images/sample-1.jpg" />
                     <br />
-                    <label for="input-file-to-destroy">You can destroy it <button type="button" id="toggleDUify">Init/Destroy</button></label>
+                    <label for="input-file-to-destroy">You can destroy it <button type="button" id="toggleDuify">Init/Destroy</button></label>
                     <input type="file" id="input-file-to-destroy" class="duify" data-default-file="src/images/sample-1.jpg" />
                     <br />
                     <label for="input-file-to-destroy">Multiple options are available</label>
@@ -113,9 +113,9 @@
 
                 var drDestroy = $('#input-file-to-destroy').duify();
                 drDestroy = drDestroy.data('duify')
-                $('#toggleDUify').on('click', function(e){
+                $('#toggleDuify').on('click', function(e){
                     e.preventDefault();
-                    if (drDestroy.isDropified()) {
+                    if (drDestroy.isDUified()) {
                         drDestroy.destroy();
                     } else {
                         drDestroy.init();

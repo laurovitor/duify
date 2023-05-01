@@ -1,6 +1,6 @@
 # DUify
 <p align="center">
-  <img width="290" height="107" src="./src/imagens/logo.svg" alt="Logo">
+  <img width="290" height="107" src="/src/imagens/logo.svg" alt="Logo">
 </p>
 
 
